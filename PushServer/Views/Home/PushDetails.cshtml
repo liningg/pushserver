@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "PushDetails";
+}
+<script type="text/javascript">
+    function show(id) {
+        $.ajax({
+            type: "POST",//FromMethod
+            url: "/PushServer/Home/GetMessage",//"/Controller/Action"，记住这里前面一定记得要有"/".
+            data: {data:id},//参数，无参数填空
+            success: function (msg) {//请求成功后执行的方法
+                alert(msg)
+            },
+            error: function (err){//请求错误后执行的方法
+                alert(err)
+            }
+        });
+    }
+
+</script>
+<h2>PushDetails</h2>
+<input type="button" class="btn" value="测试" onclick="show('2017-12-20')" />
+    <div class="row">
+        <div class="col-md-2">
+            <table class="table table-bordered">
+                <caption>推送详情</caption>
+                <thead>
+                    <tr>
+                        <th>ProjectId</th>
+                        <th>ProjectCode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.listProject)
+                    {
+                        <tr>
+                            <td>@item.ProjectId</td>
+                            <td>@item.ProjectCode</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="row">
+        
+        <div class="col-md-10">
+            <table class="table table-bordered">
+                <caption>推送详情</caption>
+                <thead>
+                    <tr>
+                        <th>ServerId</th>
+                        <th>ModuleId</th>
+                        <th>GroupId</th>
+                        <th>ConnectionId</th>
+                        <th>ConnectionName</th>
+                        <th>ConnectionType</th>
+                        <th>ProjectId</th>
+                        <th>IsCache</th>
+                        <th>CreateTime</th>
+                        <th>Message</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.listServer)
+                    {
+                        <tr>
+                            <td>@item.ServerId</td>
+                            <td>@item.ModuleId</td>
+                            <td>@item.GroupId</td>
+                            <td>@item.ConnectionId</td>
+                            <td>@item.ConnectionName</td>
+                            <td>@item.ConnectionType</td>
+                            <td>@item.ProjectId</td>
+                            <td>@item.IsCache</td>
+                            <td>@item.CreateTime</td>
+
+                            <td><input type="button"  class="btn" value="查看" onclick="show('@item.ServerId')"  data-serverid=@item.ServerId/></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+       

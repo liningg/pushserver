@@ -1,0 +1,16 @@
+﻿{
+  "ProjectId": [ "101" ],
+  "ModuleId": [ "EcgData", "ChatData" ],
+  "MessageType": [
+    {
+      "EcgData": [
+        //回传报告
+        { "BackReport": "10" },
+        //新增申请单
+        { "AddApplication": "11" }
+        //孕妇注册消息
+        { "RegisterPregnant":"12" }
+      ]
+    }
+  ]
+}
